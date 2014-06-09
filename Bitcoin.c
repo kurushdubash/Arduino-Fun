@@ -41,6 +41,6 @@ void loop()
 
     // do nothing forevermore:
     while(true);
-    print("Hi");
+    
   }
 }
