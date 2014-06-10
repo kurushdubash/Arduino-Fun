@@ -11,6 +11,11 @@
  
  */
 
+// Includes LCD LiquidCrystal Library
+#include "LiquidCrystal/LiquidCrystal.h" 
+// Initializes these PINS as taking control of LCD (6 PINS)
+LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
+
  char server[] = "https://coinbase.com/api/v1/prices/spot_rate";    
  void setup() {
  // Open serial communications and wait for port to open:
@@ -25,6 +30,9 @@
   delay(1000);
   
   Serial.println("Connected");
+
+  // Initializes LCD Display as (20 Characters, 4 rows)
+  lcd.begin(20, 4);
 }
 
 void loop()
