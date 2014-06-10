@@ -16,10 +16,31 @@
 
  */
 
+// Includes LCD LiquidCrystal Library
+#include "LiquidCrystal/LiquidCrystal.h" 
+// Initializes these PINS as taking control of LCD (6 PINS)
+LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
+
  char server[] = "https://coinbase.com/api/v1/prices/spot_rate";    
  void setup() {
  // Open serial communications and wait for port to open:
   Serial.begin(9600);
+<<<<<<< HEAD
+=======
+  Serial1.begin(9600);
+  Serial.println("Connecting...");
+   
+   while (!Serial) {
+    ; // wait for serial port to connect. Needed for Leonardo only
+  }
+
+  delay(1000);
+  
+  Serial.println("Connected");
+
+  // Initializes LCD Display as (20 Characters, 4 rows)
+  lcd.begin(20, 4);
+>>>>>>> 3728c40b8a78f293e6ac46ccc5047ad7f9ec16eb
 }
 
 void loop()
@@ -41,5 +62,9 @@ void loop()
     while(true);
     
   }
+<<<<<<< HEAD
   delay(60000);
 }
+=======
+}
+>>>>>>> 3728c40b8a78f293e6ac46ccc5047ad7f9ec16eb
