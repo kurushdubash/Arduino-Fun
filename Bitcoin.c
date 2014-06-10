@@ -9,22 +9,17 @@
  by Kurush Dubash
  by Hassaan Shakeel
  
+1. Reset
+2. Use puTTy to connect to internet using command "w"
+3. Wait for it to connect and everything, then flash online wirelessly.
+4. Should work.
+
  */
 
  char server[] = "https://coinbase.com/api/v1/prices/spot_rate";    
  void setup() {
  // Open serial communications and wait for port to open:
   Serial.begin(9600);
-  Serial1.begin(9600);
-  Serial.println("Connecting...");
-   
-   while (!Serial) {
-    ; // wait for serial port to connect. Needed for Leonardo only
-  }
-
-  delay(1000);
-  
-  Serial.println("Connected");
 }
 
 void loop()
@@ -46,4 +41,5 @@ void loop()
     while(true);
     
   }
+  delay(60000);
 }
