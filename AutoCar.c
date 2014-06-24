@@ -1,6 +1,6 @@
 /*
 This Project makes use of many different sensors and lights to make a functioning 2WD car.
-Ping Sensor, 2 Motors, LED lights, 
+Ping Sensor, 2 Motors, LED lights, Photoresistor.
 
 */
 // Lists all the pins on board used
@@ -89,28 +89,15 @@ long distanceAverage(float centipoop)
 {
   distanceArray[counter] = 0;
   distanceArray[counter] = centipoop;
-// Makes sure that the distance isnt more than the MAX. If it is,
-//     then it puts the previous value in. If there is no previous value 
-//     (i.e. first reading), then it keeps the value.
-//  if (centipoop < MAX || (counter == 0 && distanceArray[4] == 0))
-//  {
-//  distanceArray[counter] = centipoop;
-//  }
-//  else
-//  {
-//    if (counter == 0)
-//    {
-//      distanceArray[counter] = distanceArray[4];
-//    }
-//    else
-//    {
-//      distanceArray[counter] = distanceArray[counter - 1];
-//    }
-//  }
-// Averages the 5 previous values and outputs them as averageValue. 
-//     If it is first iteration, it simply displays reading.
+
+
  if(counterAverage == 1)
   {
+    if(centipoop >= 550) //If centimeters greaer than 550, skip reading
+    {
+      continue;
+    }
+
     for(int i = 0; i < numberOfValues; i++)
     {
       sum = distanceArray[i] + sum;
@@ -145,7 +132,7 @@ int motorControls(long distance)
     int speed1 = 80; // Speed is from 0 (Low) to 255 (High)
     analogWrite(motorLeft, speed1);
     analogWrite(motorRight, speed1);
-    analogWrite(ledPin1, 0);
+    analogWrite(ledPin1, 0); // Brake Lights off
     analogWrite(ledPin2, 0);
     return 0;
   }
@@ -153,7 +140,7 @@ int motorControls(long distance)
   {
     digitalWrite(motorLeft, LOW);
     digitalWrite(motorRight, LOW);
-    analogWrite(ledPin1, 250);
+    analogWrite(ledPin1, 250); // Brake Lights on
     analogWrite(ledPin2, 250);
     return 1;
   } 
@@ -166,11 +153,6 @@ void photoSensorFrontLED()
   // won't have a range all the way from 0 to 1023. It will likely
   // be more like 300 (dark) to 800 (light).
   
-  // In the manualTune() function above, you need to repeatedly
-  // change the values and try the program again until it works.
-  // But why should you have to do that work? You've got a
-  // computer in your hands that can figure things out for itself!
-
   // In this function, the Arduino will keep track of the highest
   // and lowest values that we're reading from analogRead().
 
